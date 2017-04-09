@@ -10,7 +10,7 @@ store.connect((err) => {
   if (err) {
     return console.log('err connect: ', err);
   }
-  let inbox = store.getInbox(1);
+  const inbox = store.getInbox(1);
   inbox.fail((err)=> {
     console.log('fail get messages: ', err);
   });
