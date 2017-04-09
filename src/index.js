@@ -1,8 +1,8 @@
 'use strict';
 
-var mailx = require('mailx');
+const mailx = require('mailx');
 
-var store = mailx.store('pop3', 'mail.kattare.com', 110, 'treelogic_admin', 'thundercl0uD1'); // @to-do: Pull this from salted database entry.
+const store = mailx.store('pop3', 'mail.kattare.com', 110, 'treelogic_admin', 'thundercl0uD1'); // @to-do: Pull this from salted database entry.
 
 console.log(store);
 
@@ -10,7 +10,7 @@ store.connect(function(err) {
   if (err) {
     return console.log('err connect: ', err);
   }
-  var inbox = store.getInbox(1);
+  let inbox = store.getInbox(1);
   inbox.fail(function(err){
     console.log('fail get messages: ', err);
   });
