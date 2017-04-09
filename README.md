@@ -4,7 +4,7 @@ Scrapes e-mail from the treelogic_admin@kattare.com e-mail account. This can be 
 
 # Prerequisites
 
-NodeJS.  See `engine` field package.json for details.
+NodeJS.  See `engines` field in the file `./package.json` for details on the version.
 
 # Install
 
@@ -12,4 +12,12 @@ make install
 
 # Run
 
-Does not work yet.
+make run
+
+# Test
+
+make test
+
+# Uninstall
+
+make uninstall
