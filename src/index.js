@@ -6,19 +6,19 @@ const store = mailx.store('pop3', 'mail.kattare.com', 110, 'treelogic_admin', 't
 
 console.log(store);
 
-store.connect(function(err) {
+store.connect((err) => {
   if (err) {
     return console.log('err connect: ', err);
   }
   let inbox = store.getInbox(1);
-  inbox.fail(function(err){
+  inbox.fail((err)=> {
     console.log('fail get messages: ', err);
   });
-  inbox.done(function(status){
+  inbox.done((status) => {
     console.log('end of inbox');
   });
   (function recursiveRcpt() {
-    inbox.getNextMessage(function(err, message) {
+    inbox.getNextMessage((err, message) => {
       if (err) {
         return console.log('fail get message: ', err);
       }
