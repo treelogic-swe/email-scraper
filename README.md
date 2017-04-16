@@ -1,6 +1,8 @@
 # Overview
 
-Scrapes e-mail from the treelogic_admin@kattare.com e-mail account. This can be used to programmatically obtain, for example, billing information from Kattare. Since Kattare has no programmatic API for this, we do it this way.
+Scrapes e-mail from the a given e-mail server, extracting string results according to specified matching patterns, and sends the output to a configured location.
+
+This is useful, for example, for having billing information written to a database from a service that sends e-mail notification of payment received, but offers no programmatic api for obtaining the data.
 
 # Prerequisites
 
