@@ -11,14 +11,14 @@ if( process.argv[firstArg] === '--help' ) {
      \nGet the list of mail servers like this: \`node index.js --list\`
      `
      );
-  exit();
+  exit(0);
 }
 if( process.argv[firstArg] === '--list' ) {
   console.info('The list of configured mail servers is: ');
   console.info('(Beginning of list)');
   console.info( Object.keys(mailServers).join() );
   console.info('(End of list)');
-  exit();
+  exit(0);
 }
 const mailStore = getMailStore( getAccessConf() );
 scrapeMail(mailStore, process.argv[ firstArg + 1 ]);
@@ -29,22 +29,22 @@ scrapeMail(mailStore, process.argv[ firstArg + 1 ]);
 function getAccessConf() {
   if( !process.argv.length || typeof process.argv[firstArg] === undefined ) {
     console.error('No Mail Server has been specified.');
-    exit();
+    exit(1);
   }
   const key = process.argv[firstArg];
   if( !mailServers[ key ] ) {
     console.error('The specified Mail Server does not exist: ' + key);
-    exit();
+    exit(1);
   }
   if( !mailServers[ key ].access ) {
     console.error('The specified Mail Server entry does not have access info: ' + key);
-    exit();
+    exit(1);
   }
 
   return mailServers[ key ].access;
 }
 
 
-function exit() {
-  process.exit();
+function exit(code) {
+  process.exit(code);
 }

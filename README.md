@@ -39,6 +39,8 @@ Then run the tests as shown below.
 
 # Test
 
+First, configure the test mail server in `./conf/test.conf.js`, according to the existing example there.  Then, run:
+
 `make test`
 
 # List Configured Servers

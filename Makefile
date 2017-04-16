@@ -16,7 +16,9 @@ run:
 	@node src/index.js ${mailserver} ${keepListening}
 
 test:
-	@echo no test yet
+	@node test/index.js
 
 uninstall:
 	rm -rf node_modules
+
+.PHONY: test
