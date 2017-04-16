@@ -1,4 +1,4 @@
-const {mailServers} = require('./mail_servers.conf');
+const {mailServers} = require('../conf/mail_servers.conf');
 const {getMailStore} = require('./get_mail_store');
 const {scrapeMail} = require('./scrape_mail');
 

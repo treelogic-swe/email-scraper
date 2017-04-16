@@ -50,4 +50,6 @@ function readAllMessages(inbox) {
 function handleReceiveMessage(message) {
   console.log(message.text);
   console.log(message.subject);
+  
+  console.log(Object.keys(message));
 }

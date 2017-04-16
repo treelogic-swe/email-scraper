@@ -10,7 +10,8 @@ const mailServers = {
     extractTasks: {
       billing: {
         subject: [ /^Kattare:\s+Payment\s+Received\s*$/, /^[Ff]w[d]?:\s+Kattare:\s+Payment\s+Received\s*$/ ],
-        sender: /.*/,
+        from: /.*/,
+        to: /.*/,
         body: /Amount:\s*\$\s*(\d+)/gm,
       }
     }
