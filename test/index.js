@@ -22,6 +22,6 @@ function handleFinished(status) {
     console.log(status.err);
     throw status.err;
   } else {
-    console.error('Test passed.');
+    console.info('Test passed.');
   }
 }
