@@ -17,6 +17,8 @@ This is useful, for example, for having billing information written to a databas
 
 `make install`
 
+Alternative: `yarn install` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
+
 # Run
 
 The argument to `make run` must be a configured mail server.  See the "List Configured Servers" section for more info.
