@@ -1,6 +1,6 @@
 # Overview
 
-Scrapes e-mail from the a given e-mail server, extracting string results according to specified matching patterns, and sends the output to a configured location.
+Scrapes e-mail from a specified e-mail server, extracting string results according to specified matching patterns, and sends the output to a configured location.
 
 This is useful, for example, for having billing information written to a database from a service that sends e-mail notification of payment received, but offers no programmatic api for obtaining the data.
 
