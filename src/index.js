@@ -1,32 +1,50 @@
-'use strict';
+const {mailServers} = require('./mail_servers.conf');
+const {getMailStore} = require('./get_mail_store');
+const {scrapeMail} = require('./scrape_mail');
 
-const mailx = require('mailx');
+const firstArg = 2;
 
-const store = mailx.store('pop3', 'mail.kattare.com', 110, 'treelogic_admin', 'thundercl0uD1'); // @to-do: Pull this from salted database entry.
+if( process.argv[firstArg] === '--help' ) {
+  console.info(
+    `Run this program like this: \`node index.js kattare\`, where 'kattare' is the specified mail server.
+     \nOptionally add \`true\` as the second argument to keep the server listening indefinitely for new mail messages.
+     \nGet the list of mail servers like this: \`node index.js --list\`
+     `
+     );
+  exit();
+}
+if( process.argv[firstArg] === '--list' ) {
+  console.info('The list of configured mail servers is: ');
+  console.info('(Beginning of list)');
+  console.info( Object.keys(mailServers).join() );
+  console.info('(End of list)');
+  exit();
+}
+const mailStore = getMailStore( getAccessConf() );
+scrapeMail(mailStore, process.argv[ firstArg + 1 ]);
 
-console.log(store);
+// - - -
 
-store.connect((err) => {
-  if (err) {
-    return console.log('err connect: ', err);
+
+function getAccessConf() {
+  if( !process.argv.length || typeof process.argv[firstArg] === undefined ) {
+    console.error('No Mail Server has been specified.');
+    exit();
   }
-  const inbox = store.getInbox(1);
-  inbox.fail((err)=> {
-    console.log('fail get messages: ', err);
-  });
-  inbox.done((status) => {
-    console.log('end of inbox');
-  });
-  (function recursiveRcpt() {
-    inbox.getNextMessage((err, message) => {
-      if (err) {
-        return console.log('fail get message: ', err);
-      }
-      if (message === null) {
-        return console.log('no more message to read');
-      }
-      console.log(message.subject);
-      recursiveRcpt();
-    });
-  })();
-});
+  const key = process.argv[firstArg];
+  if( !mailServers[ key ] ) {
+    console.error('The specified Mail Server does not exist: ' + key);
+    exit();
+  }
+  if( !mailServers[ key ].access ) {
+    console.error('The specified Mail Server entry does not have access info: ' + key);
+    exit();
+  }
+
+  return mailServers[ key ].access;
+}
+
+
+function exit() {
+  process.exit();
+}

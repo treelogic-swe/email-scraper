@@ -24,6 +24,9 @@
   "dependencies": {
     "mailx": "*"
   },
+  "devDependencies": {
+    "eslint": "*"
+  },
   "engines" : {
     "node" : ">=5.0.0"
   }
