@@ -8,6 +8,8 @@ Scrapes e-mail from the treelogic_admin@kattare.com e-mail account. This can be 
   * Configure `./conf/mail_servers.conf.js` following the pattern set by the entry `kattare` in that file.
     * Note that the username and password can be set in the clear.  Otherwise, the keyword `retrieve` will cause the mail
     program to run a separate, custom module to retrieve the credentials.
+  * Configure `./conf/output_targets.conf.js` following the pattern set by the entry `kattare` in that file.
+
 
 # Install
 
