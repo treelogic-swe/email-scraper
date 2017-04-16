@@ -9,8 +9,7 @@ const mailStore = getMailStore( mailServers[ testConf.testServer ].access );
 try {
   scrapeMail(mailStore, false, handleFinished);
 } catch (err) {
-  console.error('Test failed.');
-  throw err;
+  handleTestFailed(err);
 }
 
 // - - -
@@ -18,10 +17,17 @@ try {
 
 function handleFinished(status) {
   if( status.err ) {
-    console.error('Test failed with error: ');
-    console.log(status.err);
-    throw status.err;
+    handleTestFailed(status.err);
   } else {
     console.info('Test passed.');
   }
+}
+
+function handleTestFailed(err) {
+  console.error('Test failed.');
+  if(err) {
+    console.info('The error message is:');
+    console.log(err);
+  }
+  process.exit(1);
 }
