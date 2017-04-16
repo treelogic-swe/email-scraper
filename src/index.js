@@ -21,12 +21,35 @@ if( process.argv[firstArg] === '--list' ) {
   exit(0);
 }
 const mailStore = getMailStore( getAccessConf() );
-scrapeMail(mailStore, process.argv[ firstArg + 1 ]);
+
+scrapeMail(mailStore, getExtractTasks(), {listenForever: process.argv[ firstArg + 1 ]} );
 
 // - - -
 
 
 function getAccessConf() {
+  const mailServerConf = getMailServerConf();
+  if( !mailServerConf.access ) {
+    console.error('The specified Mail Server entry does not have access info: ' + key);
+    exit(1);
+  }
+
+  return mailServerConf.access;
+}
+
+
+function getExtractTasks() {
+  const mailServerConf = getMailServerConf();
+  if( !mailServerConf.extractTasks ) {
+    console.error('The specified Mail Server entry does not have any extract tasks: ' + key);
+    exit(1);
+  }
+
+  return mailServerConf.extractTasks;
+}
+
+
+function getMailServerConf() {
   if( !process.argv.length || typeof process.argv[firstArg] === undefined ) {
     console.error('No Mail Server has been specified.');
     exit(1);
@@ -36,14 +59,9 @@ function getAccessConf() {
     console.error('The specified Mail Server does not exist: ' + key);
     exit(1);
   }
-  if( !mailServers[ key ].access ) {
-    console.error('The specified Mail Server entry does not have access info: ' + key);
-    exit(1);
-  }
 
-  return mailServers[ key ].access;
+  return mailServers[ key ];
 }
-
 
 function exit(code) {
   process.exit(code);

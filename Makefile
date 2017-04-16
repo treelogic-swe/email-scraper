@@ -15,6 +15,9 @@ list:
 run:
 	@node src/index.js ${mailserver} ${keepListening}
 
+run-debug:
+	@node-debug -p 4459 src/index.js ${mailserver} ${keepListening}
+
 test:
 	@node test/index.js
 

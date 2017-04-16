@@ -43,6 +43,19 @@ Ensure that your code meets lint:
 
 Then run the tests as shown below.
 
+# Debug
+
+## Prerequisites
+
+  * `npm install -g node-inspector`
+  * Chrome or Opera as your default browser.
+  * Network port 4599 free or modify Makefile to suit.
+  * More info: https://github.com/node-inspector
+
+## Run
+
+make mailserver=kattare run-debug
+
 # Test
 
 First, configure the test mail server in `./conf/test.conf.js`, according to the existing example there.  Then, run:

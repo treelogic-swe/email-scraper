@@ -4,10 +4,12 @@ const {mailServers} = require('../conf/mail_servers.conf');
 const {getMailStore} = require('../src/get_mail_store');
 const {scrapeMail} = require('../src/scrape_mail');
 
-const mailStore = getMailStore( mailServers[ testConf.testServer ].access );
+const scrapeConf = mailServers[ testConf.testServer ];
+
+const mailStore = getMailStore( scrapeConf.access );
 
 try {
-  scrapeMail(mailStore, false, handleFinished);
+  scrapeMail( mailStore, scrapeConf.extractTasks, {listenForever: false, callback: handleFinished} );
 } catch (err) {
   handleTestFailed(err);
 }
