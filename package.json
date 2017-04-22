@@ -22,7 +22,8 @@
   "author": "Chris M. Balz",
   "license": "UNLICENSED",
   "dependencies": {
-    "mailx": "*"
+    "mailx": "*",
+    "command-line-args": "*"
   },
   "devDependencies": {
     "chalk": "*",
