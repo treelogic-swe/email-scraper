@@ -6,7 +6,7 @@ i: install
 install:
 	@npm install
 
-killtestmailserver:
+stoptestmailserver:
 	@mkdir -p log
 	./test/util/stop_pop3_server.sh > log/stop-pop3-server-log.txt
 
@@ -26,10 +26,10 @@ starttestmailserver:
 	@node ./test/util/pop3_server.js &
 
 test:
-	@make -s killtestmailserver  # In case previous test failed, leaving mailserver still running.
+	@make -s stoptestmailserver  # In case previous test failed, leaving mailserver still running.
 	@node test/util/pop3_server.js &
 	@node test/index.js
-	@make -s killtestmailserver
+	@make -s stoptestmailserver
 
 uninstall:
 	rm -rf node_modules

@@ -38,7 +38,7 @@ To keep the server listening indefinitely, do (using kattare again as an example
 make --mailserver=kattare --keepListening=true run
 ```
 
-If using the test server, no arguments are required: simply do `make run`.  However, the test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make killtestmailserver`.
+If using the test server, no arguments are required: simply do `make run`.  However, the test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make stoptestmailserver`.
 
 # Develop / Contribute
 
