@@ -8,17 +8,17 @@ exports.scrapeMail = scrapeMail;
 function scrapeMail(mailStore, extractTasks, options = {}) {
   mailStore.connect((err) => {
     if( err ) {
-      handleCallback(options.callback, err);
+      handleCallback(options.callback, {}, err);
       return console.log('Error: Problem connecting to the mail server: ', err);
     }
     const inbox = mailStore.getInbox(1);
     inbox.fail((err) => {
-      handleCallback(options.callback, err);
+      handleCallback(options.callback, {}, err);
       return console.info(FAIL_MSG, err);
     });
     inbox.done((status) => {
       console.info('End of inbox. Status: ', status);
-      handleCallback(options.callback);
+      handleCallback(options.callback, status, err);
       if( !options.listenForever ) {
         process.exit();
       }
@@ -62,8 +62,8 @@ function handleReceiveMessage(message, extractTasks) {
 }
 
 
-function handleCallback(cb, err) {
+function handleCallback(cb, scrapeResultStatus, err) {
   if( cb ) {
-    cb( { err } );
+    cb( { err, scrapeResultStatus } );
   }
 }

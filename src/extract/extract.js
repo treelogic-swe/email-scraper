@@ -15,6 +15,7 @@ function extract(emailMessage, conf) {
 
 
 function isMessageQualified(msg, conf) {
+  //console.log(msg);
   const fields = Object.keys(conf);
   for(let i = 0; i < fields.length; i++) {
     let mt = getMatchersAndTarget(fields[i], conf, msg);
