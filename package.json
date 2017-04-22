@@ -25,7 +25,9 @@
     "mailx": "*"
   },
   "devDependencies": {
-    "eslint": "*"
+    "chalk": "*",
+    "eslint": "*",
+    "pop3-n3": "*"
   },
   "engines" : {
     "node" : ">=5.0.0"
