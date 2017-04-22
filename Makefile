@@ -6,6 +6,9 @@ i: install
 install:
 	@npm install
 
+killtestmailserver:
+	./test/util/stop_pop3_server.js
+
 lint:
 	./node_modules/.bin/eslint .
 
@@ -18,8 +21,10 @@ run:
 run-debug:
 	@node-debug -p 4459 src/index.js ${mailserver} ${keepListening}
 
-test:
+test: killtestmailserver  # In case previous test failed, leaving mailserver still running.
+	@node test/util/pop3_server.js &
 	@node test/index.js
+	make killtestmailserver
 
 uninstall:
 	rm -rf node_modules
