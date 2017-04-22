@@ -17,6 +17,23 @@ const mailServers = {
         text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/gm, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
       }
     }
+  },
+  localTest: {
+      access: {
+      protocol: 'pop3',
+      fqDomain: 'localhost',
+      port: 1110,
+      username: 'treelogic_admin',
+      pwd: '12345',
+    },
+    extractTasks: {
+      billing: {  // Object properties (keys) are 'and'd, and Array elements inside the properties are 'or'd.
+        subject: [ /^Kattare:\s+Payment\s+Received\s*$/, /^[Ff]w[d]?:\s+Kattare:\s+Payment\s+Received\s*$/ ],
+        from: [ /.*/ ], // Uses the 'address' field only, not name.
+        to: [ /.*/ ],  // Uses the 'address' field only, not name.
+        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/gm, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
+      }
+    }
   }
 };
 
