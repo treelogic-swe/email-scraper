@@ -19,21 +19,27 @@ This is useful, for example, for having billing information written to a databas
 
 Alternative: `yarn install` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
 
+# Configure
+
+If not running using the test server, then the mail server and extraction job will need to be configured.  See `./conf/README.md` for details.
+
 # Run
 
-The argument to `make run` must be a configured mail server.  See the "List Configured Servers" section for more info.
+If not using the test mail server, then the argument to `make run` must be a configured mail server.  See the "List Configured Servers" section for more info.
 
 Example:
 
 ```
-make mailserver=kattare run
+make --mailserver=kattare run
 ```
 
 To keep the server listening indefinitely, do (using kattare again as an example):
 
 ```
-make mailserver=kattare keepListening=true run
+make --mailserver=kattare --keepListening=true run
 ```
+
+If using the test server, no arguments are required: simply do `make run`.  However, the test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make killtestmailserver`.
 
 # Develop / Contribute
 
@@ -58,7 +64,7 @@ make mailserver=kattare run-debug
 
 # Test
 
-First, configure the test mail server in `./conf/test.conf.js`, according to the existing example there.  Then, run:
+First, configure the test mail server in `./conf/test.conf.js`, according to the relevant information in `./conf/README.md`.  Then, run:
 
 `make test`
 
