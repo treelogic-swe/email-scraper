@@ -22,6 +22,9 @@ run:
 run-debug:
 	@node-debug -p 4459 src/index.js ${mailserver} ${keepListening}
 
+starttestmailserver:
+	@node ./test/util/pop3_server.js &
+
 test:
 	@make -s killtestmailserver  # In case previous test failed, leaving mailserver still running.
 	@node test/util/pop3_server.js &
