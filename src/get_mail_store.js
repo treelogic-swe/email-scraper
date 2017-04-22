@@ -2,13 +2,9 @@ const mailx = require('mailx');
 
 exports.getMailStore = getMailStore;
 
-function getMailStore(conf) {
+function getMailStore(conf, commandLineOptions) {
   const {protocol, fqDomain, port, username, pwd} = conf;
-  const mailStore = mailx.store(protocol, fqDomain, port, username, pwd); // @to-do: Pull this from salted database entry.
-
-  if( !pwd ) {
-    pwd = '';
-  }
+  const mailStore = mailx.store(protocol, fqDomain, port, username, pwd || '');
 
   return mailStore;
 }
