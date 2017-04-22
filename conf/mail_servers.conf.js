@@ -6,8 +6,12 @@ const mailServers = {
       protocol: 'pop3',
       fqDomain: 'mail.kattare.com',
       port: 110,
-      username: 'treelogic_admin',
-      pwd: '', // @to-do: Get this from db in a salted form.
+      /*-
+       * Username and password can be specified on the command line like this:
+       *   --username foo --password bar
+       */
+      username: '',
+      pwd: '',
     },
     extractTasks: {
       billing: {
@@ -33,7 +37,7 @@ const mailServers = {
       protocol: 'pop3',
       fqDomain: 'localhost',
       port: 1110,
-      username: 'treelogic_admin',
+      username: 'test-user',
       pwd: '12345',
     },
     extractTasks: {
