@@ -8,7 +8,7 @@ install:
 
 killtestmailserver:
 	@mkdir -p log
-	./test/util/stop_pop3_server.js > log/stop-pop3-server-log.txt
+	./test/util/stop_pop3_server.sh > log/stop-pop3-server-log.txt
 
 lint:
 	./node_modules/.bin/eslint .
