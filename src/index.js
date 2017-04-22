@@ -52,13 +52,15 @@ function getAccessConf() {
   }
   if( clOpts.username ) {
     if( mailServerConf.access.username ) {
-      console.info('Overriding the specified username with the username supplied on the command line.')
+      logAboutCmdLOverride('username');
+      logAboutCmdLOptions();
     }
     mailServerConf.access.username = clOpts.username;
   }
   if( clOpts.password ) {
     if( mailServerConf.access.pwd ) {
-      console.info('Overriding the specified password with the password supplied on the command line.')
+      logAboutCmdLOverride('password');
+      logAboutCmdLOptions();
     }
     mailServerConf.access.pwd = clOpts.password;
   }
@@ -91,6 +93,14 @@ function getMailServerConf() {
 
   return mailServers[ key ];
 }
+
+function logAboutCmdLOverride(name) {
+  console.info(`Overriding the specified ${name} with the ${name} supplied on the command line.`);
+};
+
+function logAboutCmdLOptions() {
+  console.info('Command line option info, including default settings that may be applied, is in: ./src/command_line_option_definitions.js');
+};
 
 function exit(code) {
   process.exit(code);

@@ -7,6 +7,7 @@ const mailServers = {
       fqDomain: 'mail.kattare.com',
       port: 110,
       /*-
+       * Config Doc:
        * Username and password can be specified on the command line like this:
        *   --username foo --password bar
        */

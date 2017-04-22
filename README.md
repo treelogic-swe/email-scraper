@@ -12,7 +12,6 @@ This is useful, for example, for having billing information written to a databas
     program to run a separate, custom module to retrieve the credentials.
   * Configure `./conf/output_targets.conf.js` following the pattern set by the entry `kattare` in that file.
 
-
 # Install
 
 `make install`
