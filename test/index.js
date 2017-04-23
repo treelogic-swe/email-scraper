@@ -26,10 +26,10 @@ function handleFinished(status) {
   if( status.err ) {
     handleTestFailed(status.err, 'Logic error.');
   } else { // Test Assertions go here:
-    if( status.scrapeResultStatus.received === 1 ) {
+    if( status.scrapeResultStatus.scrapeResult.billing.length ) {
      console.info(passed('Test passed.') + chalk.green.bold(' \u2713  '));
     } else {
-      handleTestFailed(null, 'Unexpected result: ' + JSON.stringify(status.scrapeResultStatus) + '; expected received 1.');
+      handleTestFailed(null, 'Unexpected result: No matching data.');
     }
   }
 }

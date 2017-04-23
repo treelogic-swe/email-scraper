@@ -1,6 +1,10 @@
 const FAIL_MSG = 'Error: Fail get message:';
 
 const {extract} = require('./extract/extract');
+const scrapeResultStatus = {
+  mailStatus: null,
+  scrapeResult: {},
+};
 
 exports.scrapeMail = scrapeMail;
 
@@ -18,7 +22,8 @@ function scrapeMail(mailStore, extractTasks, options = {}) {
     });
     inbox.done((status) => {
       console.info('End of inbox. Status: ', status);
-      handleCallback(options.callback, status, err);
+      scrapeResultStatus.mailStatus = status;
+      handleCallback(options.callback, scrapeResultStatus, err);
       if( !options.listenForever ) {
         process.exit();
       }
@@ -52,12 +57,8 @@ function readAllMessages(inbox, extractTasks) {
 
 
 function handleReceiveMessage(message, extractTasks) {
-/*  console.log(message.text);
-  console.log(message.subject);
-  console.log(Object.keys(message));
-*/
   Object.keys(extractTasks).map( ( taskName ) => {
-    extract(message, extractTasks[ taskName ] );
+    scrapeResultStatus.scrapeResult[ taskName ] = extract(message, extractTasks[ taskName ]) || [];
   } );
 }
 

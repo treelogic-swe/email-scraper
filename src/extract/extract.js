@@ -1,42 +1,66 @@
 exports.extract = extract;
 
+const pull = require('lodash/pull');
+const some = require('lodash/some');
+
+const CONDITIONAL_KEY = 'conditional';
+
 const FROM_FIELD = 'from';
 const TO_FIELD = 'to';
 const TEXT_BODY_FIELD = 'text';
 
 
 function extract(emailMessage, conf) {
-  if(!isMessageQualified(emailMessage, conf)) {
-    return;
-  }
+  const extracted = getMatchesFromQualifiedMessages(emailMessage, conf);
+  if( !extracted || !extracted.length ) {
+    console.info('No qualified message found (none pass all the match requirements specified in the config).');
 
-  console.log('Found a qualified message (passes all the match requirements specified in the config).');
+    return null;
+  }
+  console.info('Found a qualified message (passes all the match requirements specified in the config).');
+  console.log(extracted);
+
+  return extracted;
 }
 
 
-function isMessageQualified(msg, conf) {
+function getMatchesFromQualifiedMessages(msg, conf) {
   //console.log(msg);
-  const fields = Object.keys(conf);
+  const allMatches = {};
+  const fields = pull( Object.keys(conf), CONDITIONAL_KEY );
   for(let i = 0; i < fields.length; i++) {
     let mt = getMatchersAndTarget(fields[i], conf, msg);
-    if( !doesFieldMatch(mt, fields[i]) ) {
-      return false;
+    let matches = getMatches(mt, fields[i]);
+    if( !matches ) {
+      return null;
     }
+    allMatches[ fields[ i ] ] = matches;
   }
-
-  return true;
+  const extracted = getMatchingText(allMatches);
+  return extracted;
 }
 
 
-function doesFieldMatch(mt, field) {
+function getMatches(mt, field) {
   const matchResults = applyMatchers(mt, field);
-  for(let i = 0; i < matchResults.length; i++) {
-    if(matchResults[i] !== null) { // 'or' logical condition.
-      return true;
-    }
-  }
+  const anyMatch = some( matchResults, _ => _ !== null); // 'or' logical condition.
 
-  return false;
+  return anyMatch ? matchResults : null;
+}
+
+
+function getMatchingText(matches) {
+  const textMatches = matches[ TEXT_BODY_FIELD ];
+  const nonNull = pull( textMatches, null ); // Remove any null matches.
+  const extracted = nonNull.map( _ => {
+    if( _.length > 1 ) { // A regex group was used and matched, so return that particular text.
+      return _[1];
+    }
+
+    return _[0]; // Just return the entire match since no regex group was used.
+  } );
+
+  return extracted;
 }
 
 
