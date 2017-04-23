@@ -59,7 +59,7 @@ Then run the tests as shown below, ensuring that you see "Test Passed" as the te
 
 ## Run
 
-make mailserver=kattare run-debug
+make run-debug
 
 # Test
 
