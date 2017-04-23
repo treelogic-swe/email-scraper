@@ -73,7 +73,7 @@ Port 1110 must be available.
 
 ## Configure
 
-Configure the test mail server and other settings in `./conf/test.conf.js`, according to the relevant information in `./conf/README.md`.  Then, r
+Configure the test mail server and other settings in `./conf/test.conf.js`, according to the relevant information in `./conf/README.md`.
 
 # List Configured Servers
 
