@@ -38,7 +38,7 @@ const mailServers = {
     }
   },
   localTest: {
-      access: {
+    access: {
       protocol: 'pop3',
       fqDomain: 'localhost',
       port: 1110,

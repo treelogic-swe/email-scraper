@@ -1,4 +1,4 @@
-const commandLineArgs = require('command-line-args')
+const commandLineArgs = require('command-line-args');
 
 const {mailServers} = require('../conf/mail_servers.conf');
 
@@ -47,7 +47,7 @@ scrapeMail(mailStore, getExtractTasks(), {listenForever: clOpts.keepListening} )
 function getAccessConf() {
   const mailServerConf = getMailServerConf();
   if( !mailServerConf.access ) {
-    console.error('The specified Mail Server entry does not have access info: ' + key);
+    console.error('The specified Mail Server entry does not have access info.');
     exit(1);
   }
   if( clOpts.username ) {
@@ -72,7 +72,7 @@ function getAccessConf() {
 function getExtractTasks() {
   const mailServerConf = getMailServerConf();
   if( !mailServerConf.extractTasks ) {
-    console.error('The specified Mail Server entry does not have any extract tasks: ' + key);
+    console.error('The specified Mail Server entry does not have any extract tasks.');
     exit(1);
   }
 
@@ -96,11 +96,11 @@ function getMailServerConf() {
 
 function logAboutCmdLOverride(name) {
   console.info(`Overriding the specified ${name} with the ${name} supplied on the command line.`);
-};
+}
 
 function logAboutCmdLOptions() {
   console.info('Command line option info, including default settings that may be applied, is in: ./src/command_line_option_definitions.js');
-};
+}
 
 function exit(code) {
   process.exit(code);
