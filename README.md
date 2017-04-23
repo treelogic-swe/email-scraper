@@ -24,6 +24,12 @@ If not running using the test server, then the mail server and extraction job wi
 
 # Run
 
+Example (running with all defaults, which uses the test mailserver that is bundled with this project):
+
+```
+make run
+```
+
 If not using the test mail server, then the argument to `make run` must be a configured mail server.  See the "List Configured Servers" section for more info.
 
 Example:
