@@ -46,7 +46,7 @@ Ensure that your code meets lint:
 
 `make lint`
 
-Then run the tests as shown below.
+Then run the tests as shown below, ensuring that you see "Test Passed" as the test result.
 
 # Debug
 
