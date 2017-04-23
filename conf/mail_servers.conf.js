@@ -25,11 +25,15 @@ const mailServers = {
          * Also, if the 'conditional' object is specified, then only the relationships specified there are applied.
          *
          * Array elements inside the properties are 'or'd.  To use 'and' in that case, put the cases into a single regex.
+         *
+         * The final extracted value is the match of the 'text' field.  Only a maximum of one regex group can be used.
+         * If a regex group is used, the extracted value is any match of that group.  Note that if the 'g' option is used on a regex,
+         * then no groups will be applied by the regex engine (if you want to match a group, then you cannot use the 'g' option).
          */
         subject: [ /^Kattare:\s+Payment\s+Received\s*$/, /^[Ff]w[d]?:\s+Kattare:\s+Payment\s+Received\s*$/ ],
         from: [ /.*/ ], // Uses the 'address' field only, not name.
         to: [ /.*/ ],  // Uses the 'address' field only, not name.
-        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/gm, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
+        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/m, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
       }
     }
   },
@@ -46,7 +50,7 @@ const mailServers = {
         subject: [ /^Kattare:\s+Payment\s+Received\s*$/, /^[Ff]w[d]?:\s+Kattare:\s+Payment\s+Received\s*$/ ],
         from: [ /.*/ ], // Uses the 'address' field only, not name.
         to: [ /.*/ ],  // Uses the 'address' field only, not name.
-        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/gm, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
+        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/m, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
         conditional: [ { terms: ['subject', 'text'], operator: 'or' } ],
       }
     }
