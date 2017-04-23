@@ -6,6 +6,9 @@ i: install
 install:
 	@npm install
 
+instally:
+	@yarn install
+
 stoptestmailserver:
 	@mkdir -p log
 	@./test/util/stop_pop3_server.sh > log/stop-pop3-server-log.txt

@@ -16,7 +16,7 @@ This is useful, for example, for having billing information written to a databas
 
 `make install`
 
-Alternative: `yarn install` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
+Alternative: `make instally` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
 
 # Configure
 
