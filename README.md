@@ -83,7 +83,7 @@ Configure the test mail server and other settings in `./conf/test.conf.js`, acco
 
 # List Configured Servers
 
-`make --list`
+`make list`
 
 # Uninstall
 
@@ -94,5 +94,5 @@ Configure the test mail server and other settings in `./conf/test.conf.js`, acco
 Get help on the mail program features like this:
 
 ```
-make --help
+make help
 ```
