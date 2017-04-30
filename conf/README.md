@@ -2,11 +2,11 @@
 
 ## Overview
 
-This doc covers the options available for configuring `email-scraper`, including test config.
+This doc covers the options available for configuring `email-scraper`, including configuring the automated tests.
 
 ## Mail Servers
 
-Configure which mail server you access in the file, `./mail_servers.conf.js`.  Each mail server gets a name, which is a top-level key in the hash held by the `const` identifier, `mailServers`.  The rest of the details are documented in the first such key as JavaScript comments.
+Configure the mail servers you access in the file, `./mail_servers.conf.js`.  Each mail server gets a name, which is a top-level key in the hash held by the `const` identifier, `mailServers`.  The rest of the details are documented in the first such key as JavaScript comments.
 
 ## Mail Data Extraction
 
@@ -18,4 +18,4 @@ Output is configured in the file `./output_targets_conf.js`.  Any keys of the to
 
 ## Test
 
-To specify the mailserver against which the test runs (`make test`), set it in `./test.conf.js`.
+To specify the mailserver against which the test runs (`make test`), set it in `./test.conf.js`.  Usually you will just want to use the mailserver that is pre-configured in that file.  That mailserver is included with this module.
