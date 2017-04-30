@@ -1,30 +1,15 @@
 // Modified from: https://www.npmjs.com/package/pop3-n3
 
-var N3 = require('../../node_modules/pop3-n3/n3').N3,
+const N3 = require('../../node_modules/pop3-n3/n3').N3,
   MessageStore = require('../../node_modules/pop3-n3/messagestore').MessageStore,
-  server_name = 'fw.node.ee';
+  emails = require('./test_messages');
 
-var markdown = require('node-markdown').Markdown;
+const server_name = 'fw.node.ee';
 
 // runs after the user is successfully authenticated
 MessageStore.prototype.registerHook = function () {
-
-    // Add a new message to the users inbox (MessageStore)
-
-  var curtime = new Date().toLocaleString(),
-    message = 'Tere ÕÜÄÖŠ!\n------------------\n\nKell on praegu **' + curtime + '**\n\nVaata ka:\nAmount: $100.00\n\n  * [Delfi](http://www.delfi.ee)\n  * [NETI' +
-                '](http://www.neti.ee)\n  * [EPL](http://www.epl.ee)\n\n*Koodiblokk*\n\n    for(v' +
-                'ar i=0;i<100;i++){\n        alert(i+5);\n    }\n\n\nParimat,  \nKellamees';
-
-  this.addMessage({
-    toName: 'Andris Reinman',
-    toAddress: 'andris.reinman@gmail.com',
-    fromName: 'Ämblik Kämbu',
-    fromAddress: 'amblik.kambu@node.ee',
-    subject: 'Kattare: Payment Received',
-    text: message,
-    html: markdown(message)
-  });
+  // Add a new message to the users inbox (MessageStore)
+  this.addMessage(emails[0]);
 };
 
 // Currenlty any user with password "12345" will be authenticated successfully
@@ -44,8 +29,8 @@ N3.startServer(/* 110, */
 // Custom authentication method: FOOBAR <user> <pass>
 N3.extendAUTH('FOOBAR', function (authObj) {
   var params = authObj
-            .params
-            .split(' '),
+      .params
+      .split(' '),
     user = params[0],
     pass = params[1];
 
