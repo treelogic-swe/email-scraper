@@ -13,11 +13,11 @@ const TEXT_BODY_FIELD = 'text';
 function extract(emailMessage, conf) {
   const extracted = getMatchesFromQualifiedMessages(emailMessage, conf);
   if( !extracted || !extracted.length ) {
-    console.info('No qualified message found (none pass all the match requirements specified in the config).');
+    console.info('Message does not qualify (does not pass all the match requirements specified in the config).');
 
     return null;
   }
-  console.info('Found a qualified message (passes all the match requirements specified in the config).');
+  console.info('Message qualifies (passes all the match requirements specified in the config).');
   console.log(extracted);
 
   return extracted;
