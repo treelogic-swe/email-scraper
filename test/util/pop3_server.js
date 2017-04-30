@@ -9,7 +9,9 @@ const server_name = 'fw.node.ee';
 // runs after the user is successfully authenticated
 MessageStore.prototype.registerHook = function () {
   // Add a new message to the users inbox (MessageStore)
-  this.addMessage(emails[0]);
+  emails.map(email => {
+    this.addMessage(email);
+  });
 };
 
 // Currenlty any user with password "12345" will be authenticated successfully

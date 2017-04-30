@@ -4,9 +4,14 @@ const merge = require('lodash/merge');
 
 const curtime = new Date().toLocaleString();
 
-const messages = ['Tere ÕÜÄÖŠ!\n------------------\n\nKell on praegu **' + curtime + '**\n\nVaata ka:\nAmount: $100.00\n\n  * [Delfi](http://www.delfi.ee)\n  * [NETI]' +
-    '(http://www.neti.ee)\n  * [EPL](http://www.epl.ee)\n\n*Koodiblokk*\n\n    for(va' +
-    'r i=0;i<100;i++){\n        alert(i+5);\n    }\n\n\nParimat,  \nKellamees'];
+const messages = [
+  'FOO Tere ÕÜÄÖŠ!\n------------------\n\nKell on praegu **' + curtime + '**\n\nVaata ka:\nAmount: $100.00\n\n  * [Delfi](http://www.delfi.ee)\n  * [NETI]' +
+      '(http://www.neti.ee)\n  * [EPL](http://www.epl.ee)\n\n*Koodiblokk*\n\n    for(va' +
+      'r i=0;i<100;i++){\n        alert(i+5);\n    }\n\n\nParimat,  \nKellamees',
+  'BAR Tere ÕÜÄÖŠ!\n------------------\n\nKell on praegu **' + curtime + '**\n\nVaata ka:\nAmount: $100.00\n\n  * [Delfi](http://www.delfi.ee)\n  * [NETI]' +
+      '(http://www.neti.ee)\n  * [EPL](http://www.epl.ee)\n\n*Koodiblokk*\n\n    for(va' +
+      'r i=0;i<100;i++){\n        alert(i+5);\n    }\n\n\nParimat,  \nKellamees'
+];
 
 const messageMetas = [
   {
@@ -15,6 +20,12 @@ const messageMetas = [
     fromName: 'Ämblik Kämbu',
     fromAddress: 'amblik.kambu@node.ee',
     subject: 'Kattare: Payment Received'
+  }, {
+    toName: 'Foo Bar',
+    toAddress: 'bat.reinman@gmail.com',
+    fromName: 'baz Kämbu',
+    fromAddress: 'foo.kambu@node.ee',
+    subject: 'Kattare: Payment Failed'
   }
 ];
 
