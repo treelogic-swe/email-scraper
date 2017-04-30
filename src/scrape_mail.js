@@ -58,7 +58,13 @@ function readAllMessages(inbox, extractTasks) {
 
 function handleReceiveMessage(message, extractTasks) {
   Object.keys(extractTasks).map( ( taskName ) => {
-    scrapeResultStatus.scrapeResult[ taskName ] = extract(message, extractTasks[ taskName ]) || [];
+    const sr = scrapeResultStatus.scrapeResult;
+    const extracted = extract(message, extractTasks[ taskName ]) || [];
+    if( !sr[ taskName ] ) {
+      sr[ taskName ] = extracted;
+    } else {
+      sr[ taskName ].concat( extracted );
+    }
   } );
 }
 
