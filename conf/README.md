@@ -18,4 +18,4 @@ Output is configured in the file `./output_targets_conf.js`.  Any keys of the to
 
 ## Test
 
-To specify the mailserver against which the test runs (`make test`), set it in `./test.conf.js`.  Usually you will just want to use the mailserver that is pre-configured in that file.  That mailserver is included with this module.
+To specify the mailserver against which the test runs (`make test`), set it in `./test.conf.js`.  Usually you will just want to use the mailserver that is pre-configured in that file.  That mailserver is included with this package.

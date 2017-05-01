@@ -52,7 +52,7 @@ If using the test server, no arguments are required: simply do `make run`.  Howe
 
 ## Programmatic
 
-The file `src/index.js` shows how to use this module from your NodeJS program.  Essentially, you will use the module, `src/scrape_mail.js` as your entry point.
+The file `src/index.js` shows how to use this package from your NodeJS program.  Essentially, you will use the module, `src/scrape_mail.js` as your entry point.
 
 # Develop / Contribute
 
