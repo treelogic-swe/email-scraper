@@ -42,6 +42,7 @@ test:
 	@make -s stoptestmailserver
 
 test-debug:
+	echo This is not popping up the graphical debugger window that it should.
 	@make -s test debug=true
 
 uninstall:

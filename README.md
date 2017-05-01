@@ -35,13 +35,13 @@ If not using the test mail server, then the argument to `make run` must be a con
 Example:
 
 ```
-make --mailserver=kattare run
+make run mailserver=foo username=bar password=bat
 ```
 
 To keep the server listening indefinitely, do (using kattare again as an example):
 
 ```
-make --mailserver=kattare --keepListening=true run
+make run mailserver=foo username=bar password=bat keepListening=true
 ```
 
 If using the test server, no arguments are required: simply do `make run`.  However, the test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make stoptestmailserver`.
@@ -65,7 +65,9 @@ Then run the tests as shown below, ensuring that you see "Test Passed" as the te
 
 ## Run
 
-make run-debug
+`make run-debug`
+
+You can use the same command line options as above with `make run`.
 
 # Test
 
