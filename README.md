@@ -4,6 +4,8 @@ Scrapes e-mail from a specified e-mail server, extracting string results accordi
 
 This is useful, for example, for having billing information written to a database from a service that sends e-mail notification of payment received, but offers no programmatic api for obtaining the data.
 
+Can be used from the command line or programmatically, as described below in the "Usage" section.
+
 # Prerequisites
 
   * NodeJS.  See `engines` field in the file `./package.json` for details on the version.
@@ -22,7 +24,9 @@ Alternative: `make instally` .  This will use the [yarn package manager](https:/
 
 If not running using the test server, then the mail server and extraction job will need to be configured.  See `./conf/README.md` for details.
 
-# Run
+# Usage
+
+## Command-Line
 
 Example (running with all defaults, which uses the test mailserver that is bundled with this project):
 
@@ -45,6 +49,10 @@ make run mailserver=foo username=bar password=bat keepListening=true
 ```
 
 If using the test server, no arguments are required: simply do `make run`.  However, the test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make stoptestmailserver`.
+
+## Programmatic
+
+The file `src/index.js` shows how to use this module from your NodeJS program.  Essentially, you will use the module, `src/scrape_mail.js` as your entry point.
 
 # Develop / Contribute
 
