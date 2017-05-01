@@ -1,7 +1,7 @@
 const {mailServers} = require('../conf/mail_servers.conf');
 
 const {getMailStore} = require('./get_mail_store');
-const {scrapeMail} = require('./scrape_mail');
+const scrapeMail = require('./scrape_mail');
 
 const getAccessConf = require('./marshall_config/get_access_conf');
 const getExtractTasks = require('./marshall_config/get_extract_tasks');

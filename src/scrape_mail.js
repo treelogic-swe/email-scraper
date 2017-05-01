@@ -6,7 +6,7 @@ const scrapeResultStatus = {
   scrapeResult: {},
 };
 
-exports.scrapeMail = scrapeMail;
+module.exports = scrapeMail;
 
 
 function scrapeMail(mailStore, extractTasks, options = {}) {
