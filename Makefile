@@ -1,3 +1,5 @@
+NODE_DEBUGGER_PORT=4459
+
 help:
 	@node src/index.js --help
 
@@ -20,10 +22,10 @@ list:
 	@node src/index.js --list
 
 run:
-	@node src/index.js ${mailserver} ${keepListening}
+	@node src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
 run-debug:
-	@node-debug -p 4459 src/index.js ${mailserver} ${keepListening}
+	@node-debug -p ${NODE_DEBUGGER_PORT} src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
 starttestmailserver:
 	@node ./test/util/pop3_server.js &
@@ -31,8 +33,16 @@ starttestmailserver:
 test:
 	@make -s stoptestmailserver  # In case previous test failed, leaving mailserver still running.
 	@node test/util/pop3_server.js &
-	@node test/index.js
+	@if [ ${debug} ]; \
+	then \
+		node-debug -p ${NODE_DEBUGGER_PORT} test/index.js; \
+	else \
+		node test/index.js; \
+	fi
 	@make -s stoptestmailserver
+
+test-debug:
+	@make -s test debug=true
 
 uninstall:
 	rm -rf node_modules
