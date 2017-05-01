@@ -7,6 +7,14 @@ const outputTargets = {
       tableName: 'fc_t_monthly_statistics',
     },
   },
+  localTest: {
+    kind: 'file',
+    type: 'csv', // Also serves as the filename extension in the case of a 'kind' of 'file'.
+    details: {
+      directoryName: '.',
+      fileName: 'test-result-output'
+    }
+  }
 };
 
 exports.outputTargets = outputTargets;

@@ -7,6 +7,11 @@ const {commandLineOptionDefinitions} = require('./command_line_option_definition
 const {getMailStore} = require('./get_mail_store');
 const {scrapeMail} = require('./scrape_mail');
 
+const getAccessConf = require('./marshall_config/get_access_conf');
+const getExtractTasks = require('./marshall_config/get_extract_tasks');
+
+const {exit} = require('./util.js');
+
 const clOpts = commandLineArgs(commandLineOptionDefinitions);
 
 
@@ -37,71 +42,14 @@ if( clOpts.list ) {
 
   exit(0);
 }
-const mailStore = getMailStore( getAccessConf() );
 
-scrapeMail(mailStore, getExtractTasks(), {listenForever: clOpts.keepListening} );
+console.log('\n\u2600 Running with these options:');
+console.log(clOpts);
 
-// - - -
+const accessConfig = getAccessConf(clOpts, mailServers);
+console.log('\n\u2600 Running with this mailserver access configuration:');
+console.log(accessConfig);
 
+const mailStore = getMailStore( accessConfig, clOpts );
 
-function getAccessConf() {
-  const mailServerConf = getMailServerConf();
-  if( !mailServerConf.access ) {
-    console.error('The specified Mail Server entry does not have access info.');
-    exit(1);
-  }
-  if( clOpts.username ) {
-    if( mailServerConf.access.username ) {
-      logAboutCmdLOverride('username');
-      logAboutCmdLOptions();
-    }
-    mailServerConf.access.username = clOpts.username;
-  }
-  if( clOpts.password ) {
-    if( mailServerConf.access.pwd ) {
-      logAboutCmdLOverride('password');
-      logAboutCmdLOptions();
-    }
-    mailServerConf.access.pwd = clOpts.password;
-  }
-
-  return mailServerConf.access;
-}
-
-
-function getExtractTasks() {
-  const mailServerConf = getMailServerConf();
-  if( !mailServerConf.extractTasks ) {
-    console.error('The specified Mail Server entry does not have any extract tasks.');
-    exit(1);
-  }
-
-  return mailServerConf.extractTasks;
-}
-
-
-function getMailServerConf() {
-  if( !clOpts.mailserver ) {
-    console.error('No Mail Server has been specified.');
-    exit(1);
-  }
-  const key = clOpts.mailserver;
-  if( !mailServers[ key ] ) {
-    console.error('The specified Mail Server does not exist: ' + key);
-    exit(1);
-  }
-
-  return mailServers[ key ];
-}
-
-function logAboutCmdLOverride(name) {
-  console.info(`Overriding the specified ${name} with the ${name} supplied on the command line.`);
-}
-
-function logAboutCmdLOptions() {
-  console.info('Command line option info, including default settings that may be applied, is in: ./src/command_line_option_definitions.js');
-}
-
-function exit(code) {
-  process.exit(code);
-}
+scrapeMail(mailStore, getExtractTasks(clOpts, mailServers), {listenForever: clOpts.keepListening} );
