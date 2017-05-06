@@ -15,21 +15,29 @@ function scrapeMail(mailStore, extractTasks, options = {}) {
       handleCallback(options.callback, {}, err);
       return console.log('Error: Problem connecting to the mail server: ', err);
     }
-    const inbox = mailStore.getInbox(1);
-    inbox.fail((err) => {
-      handleCallback(options.callback, {}, err);
-      return console.info(FAIL_MSG, err);
-    });
-    inbox.done((status) => {
-      console.info('End of inbox. Status: ', status);
-      scrapeResultStatus.mailStatus = status;
-      handleCallback(options.callback, scrapeResultStatus, err);
-      if( !options.listenForever ) {
-        process.exit();
-      }
-    });
+    const inbox = getInbox(mailStore, options);
     readAllMessages(inbox, extractTasks);
   });
+}
+
+
+function getInbox(mailStore, options) {
+  const startMessageNumber = options.startAt ? options.startAt + 1 : 1;
+  const inbox = mailStore.getInbox(startMessageNumber);
+  inbox.fail((err) => {
+    handleCallback(options.callback, {}, err);
+    return console.info(FAIL_MSG, err);
+  });
+  inbox.done((status) => {
+    console.info('End of inbox. Status: ', status);
+    scrapeResultStatus.mailStatus = status;
+    handleCallback(options.callback, scrapeResultStatus);
+    if (!options.listenForever) {
+      process.exit();
+    }
+  });
+
+  return inbox;
 }
 
 
