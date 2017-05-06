@@ -12,6 +12,7 @@ function processCommandLineOptions(mailServers) {
      \nOptionally supply '--keepListening true' to keep the server listening indefinitely for new mail messages.
      \nGet the list of mail servers like this: \`node index.js --list\`
      \nYou can also specify username and password (overrides any config).
+     \nThe 'startAt' option counts from zero being the first message on the email server.
      \nPrepend all long-form option names with '--'.  To reduce typing you can use the option aliases listed below in the command line option list.
      \nPrepend all aliases (the short-form option names) with '-'.
      \nHere are all command line options:
