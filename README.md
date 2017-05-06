@@ -106,3 +106,20 @@ Get help on the mail program features like this:
 ```
 make help
 ```
+
+# Development Tips
+
+## Run Fast
+
+To iterate quickly over successive runs, use the bundled local test email server.  To do this, first start the test email server with `make starttestmailserver`.  Then, do `make run-against-test-server`.
+
+## Change the Test Data
+
+If you would like to alter the test data that is used by the bundled local test email server, this is done in the file `./test/util/test_messages.js`.  Modify the two components, the message body list and the message metadata list.  To see your change, you will need to restart the test email server: `make stoptestmailserver`.
+
+# Contributing
+
+Ensure that:
+
+  * Your pull or merge request passes all tests (see Test section above) and passes lint (`make lint`).
+  * Document any new options or behaviors in a `README.md` (new or existing) and, as needed, in the output of `make help`.
