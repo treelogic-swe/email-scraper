@@ -87,6 +87,10 @@ Port 1110 must be available.
 
 `make test`
 
+## Debug
+
+`make test debug=true`
+
 ## Configure
 
 Configure the test mail server and other settings in `./conf/test.conf.js`, according to the relevant information in `./conf/README.md`.

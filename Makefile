@@ -28,14 +28,14 @@ run:
 	@node src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
 run-debug:
-	@node --inspect src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
+	@node --inspect --debug-brk src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
 run-against-test-server:
 	@echo To start the test mail server, run make starttestmailserver.
 	@node src/index.js --mailserver=localTest --username=foo
 
 run-against-test-server-debug:
-	@node --inspect src/index.js --mailserver=localTest --username=foo
+	@node --inspect --debug-brk src/index.js --mailserver=localTest --username=foo
 
 starttestmailserver:
 	@node ./test/util/pop3_server.js &
@@ -45,7 +45,7 @@ test:
 	@node test/util/pop3_server.js &
 	@if [ ${debug} ]; \
 	then \
-		node --inspect test/index.js; \
+		node --inspect --debug-brk test/index.js; \
 	else \
 		node test/index.js; \
 	fi
