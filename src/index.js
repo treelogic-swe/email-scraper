@@ -19,6 +19,7 @@ const mailStore = getMailStore(accessConfig, clOpts);
 
 const options = {
   listenForever: clOpts.keepListening,
+  startAt: clOpts.startAt,
   callback: (result) => {
     handleOutput(clOpts, result);
   }
