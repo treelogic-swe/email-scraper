@@ -26,7 +26,7 @@ function handleFinished(status) {
   if( status.err ) {
     handleTestFailed(status.err, 'Logic error.');
   } else { // Test Assertions go here:
-    if( status.scrapeResultStatus.scrapeResult.billing.length ) {
+    if( status.scrapeResultStatus.scrapeResult.billing.length == 2) {
       console.info(passed('Test passed.') + chalk.green.bold(' \u2713  '));
     } else {
       handleTestFailed(null, 'Unexpected result: No matching data.');
