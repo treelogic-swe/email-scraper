@@ -122,4 +122,7 @@ If you would like to alter the test data that is used by the bundled local test 
 Ensure that:
 
   * Your pull or merge request passes all tests (see Test section above) and passes lint (`make lint`).
-  * Document any new options or behaviors in a `README.md` (new or existing) and, as needed, in the output of `make help`.
+  * Any new or changed behavior has an associated automated test case that runs under `make test`.
+  * Document any new options or behaviors in a `README.md` (new or existing).
+  * Any new or changed options must be documented in the output of `make help`.
+  * Ensure all contributed code meets the license requirements in `LICENSE.txt`.
