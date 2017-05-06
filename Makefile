@@ -25,10 +25,12 @@ list:
 	@node src/index.js --list
 
 run:
-	@node src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
+	@echo This only runs against the default mailserver, localTest.  Use 'npm run-script run -- ' to use command line options.
+	@node src/index.js
 
 run-debug:
-	@node --inspect --debug-brk src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
+	@echo This only runs against the default mailserver, localTest.  Use 'npm run-script run-debug -- ' to use command line options.
+	@node --inspect --debug-brk src/index.js
 
 run-against-test-server:
 	@echo To start the test mail server, run make starttestmailserver.

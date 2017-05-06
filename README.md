@@ -28,27 +28,32 @@ If not running using the test server, then the mail server and extraction job wi
 
 ## Command-Line
 
-Example (running with all defaults, which uses the test mailserver that is bundled with this project):
+### Prerequistes
+
+* A running mailserver and access to the same.  You can use the bundled local test email server.  The test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make stoptestmailserver`.
+
+### Examples
+
+Example (running with all defaults, which uses the test mailserver that is bundled with this project; assumes that the test email server is running (see above)):
 
 ```
 make run
 ```
 
-If not using the test mail server, then the argument to `make run` must be a configured mail server.  See the "List Configured Servers" section for more info.
+If using any command line arguments, use the included npm scripts as shown below.
 
 Example:
 
 ```
-make run mailserver=foo username=bar password=bat
+npm run-script run -- --startAt=1
 ```
 
-To keep the server listening indefinitely, do (using kattare again as an example):
+To keep the server listening indefinitely on mailserver 'foo':
 
 ```
-make run mailserver=foo username=bar password=bat keepListening=true
+npm run-script run -- --mailserver=foo --username=bar --password=bat --keepListening=true
 ```
 
-If using the test server, no arguments are required: simply do `make run`.  However, the test server must be running.  Start it like this: `make starttestmailserver`.  Stop it like this: `make stoptestmailserver`.
 
 ## Programmatic
 
@@ -75,7 +80,19 @@ Then run the tests as shown below, ensuring that you see "Test Passed" as the te
 
 `make run-debug`
 
-You can use the same command line options as above with `make run`.
+### Run with Arguments
+
+Example 1:
+
+```
+npm run-script run-debug -- --startAt=1
+```
+
+Example 2:
+
+```
+npm run-script run-debug -- --mailserver=foo --username=bar --password=bat --keepListening=true
+```
 
 # Test
 
