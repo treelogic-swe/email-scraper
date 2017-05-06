@@ -71,7 +71,7 @@ function handleReceiveMessage(message, extractTasks) {
     if( !sr[ taskName ] ) {
       sr[ taskName ] = extracted;
     } else {
-      sr[ taskName ].concat( extracted );
+      sr[ taskName ] = sr[ taskName ].concat( extracted );
     }
   } );
 }
