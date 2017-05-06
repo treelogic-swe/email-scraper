@@ -27,6 +27,10 @@ run:
 run-debug:
 	@node-debug -p ${NODE_DEBUGGER_PORT} src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
+run-against-test-server:
+	@echo To start the test mail server, run make starttestmailserver.
+	@node src/index.js --mailserver=localTest --username=foo
+
 starttestmailserver:
 	@node ./test/util/pop3_server.js &
 
