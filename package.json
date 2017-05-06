@@ -20,7 +20,7 @@
     "kattare"
   ],
   "author": "Chris M. Balz",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "command-line-args": "*",
     "lodash": "*",
