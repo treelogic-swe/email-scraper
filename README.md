@@ -18,7 +18,7 @@ Can be used from the command line or programmatically, as described below in the
 
 `make install`
 
-Alternative: `make instally` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
+Tip: Use the provided alternative: `make instally` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
 
 # Configure
 

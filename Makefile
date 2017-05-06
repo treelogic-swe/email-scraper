@@ -1,4 +1,4 @@
-NODE_DEBUGGER_PORT=4459
+NBIN=./node_modules/.bin
 
 help:
 	@node src/index.js --help
@@ -11,12 +11,15 @@ install:
 instally:
 	@yarn install
 
+clean:
+	rm -rf node_modules
+
 stoptestmailserver:
 	@mkdir -p log
 	@./test/util/stop_pop3_server.sh > log/stop-pop3-server-log.txt
 
 lint:
-	./node_modules/.bin/eslint .
+	$(NBIN)/eslint .
 
 list:
 	@node src/index.js --list
@@ -25,11 +28,14 @@ run:
 	@node src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
 run-debug:
-	@node-debug -p ${NODE_DEBUGGER_PORT} src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
+	@node --inspect src/index.js --mailserver=${mailserver} --username=${username} --password=${password} --${keepListening}
 
 run-against-test-server:
 	@echo To start the test mail server, run make starttestmailserver.
 	@node src/index.js --mailserver=localTest --username=foo
+
+run-against-test-server-debug:
+	@node --inspect src/index.js --mailserver=localTest --username=foo
 
 starttestmailserver:
 	@node ./test/util/pop3_server.js &
@@ -39,7 +45,7 @@ test:
 	@node test/util/pop3_server.js &
 	@if [ ${debug} ]; \
 	then \
-		node-debug -p ${NODE_DEBUGGER_PORT} test/index.js; \
+		node --inspect test/index.js; \
 	else \
 		node test/index.js; \
 	fi
