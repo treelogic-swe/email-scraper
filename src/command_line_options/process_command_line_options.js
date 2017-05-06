@@ -7,7 +7,7 @@ const clOpts = commandLineArgs(commandLineOptionDefinitions);
 
 function processCommandLineOptions(mailServers) {
   if (clOpts.help) {
-    console.info(`Run this program like this: \`node index.js --mailserver localTest\`, where 'localTest' is the specified mail server.
+    console.info(`Run this program like this: \`node src/index.js --mailserver=localTest\`, where 'localTest' is the specified mail server.
      \nSubstitute your choice of mailserver.  Note that the mailserver is configured in 'conf/mail_servers.conf.js'.
      \nOptionally supply '--keepListening true' to keep the server listening indefinitely for new mail messages.
      \nGet the list of mail servers like this: \`node index.js --list\`
