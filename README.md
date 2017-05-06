@@ -9,6 +9,11 @@ Can be used from the command line or programmatically, as described below in the
 # Prerequisites
 
   * NodeJS.  See `engines` field in the file `./package.json` for details on the version.
+
+## Non-test Usage
+
+To use this beyond the default test settings, you will need to:
+
   * Configure `./conf/mail_servers.conf.js` following the pattern set by the entry `kattare` in that file.
     * Note that the username and password can be set in the clear.  Otherwise, the keyword `retrieve` will cause the mail
     program to run a separate, custom module to retrieve the credentials.
@@ -71,10 +76,8 @@ Then run the tests as shown below, ensuring that you see "Test Passed" as the te
 
 ## Prerequisites
 
-  * `npm install -g node-inspector`
-  * Chrome or Opera as your default browser.
-  * Network port 4599 free or modify Makefile to suit.
-  * More info: https://github.com/node-inspector
+The pre-requisites are the same as for [`node --inspect`](https://nodejs.org/api/debugger.html#debugger_v8_inspector_integration_for_node_js).
+
 
 ## Run
 
