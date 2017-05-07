@@ -37,7 +37,6 @@ function processCommandLineOptions(mailServers) {
   console.log(clOpts);
 
   return clOpts;
-
 }
 
 module.exports = processCommandLineOptions;

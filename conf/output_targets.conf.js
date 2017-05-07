@@ -1,7 +1,7 @@
-const outputTargets = {
+module.exports = {
   kattare: { // This must map to a defined mailserver name in 'mail_servers.conf.js'.
     kind: 'database',
-    type: 'mysql',
+    subkind: 'mysql',
     details: { // Credentials are provided on the command line to the program so that they are never recorded here.
       databaseName: 'fluffy',
       tableName: 'fc_t_monthly_statistics',
@@ -9,12 +9,10 @@ const outputTargets = {
   },
   localTest: {
     kind: 'file',
-    type: 'csv', // Also serves as the filename extension in the case of a 'kind' of 'file'.
+    subkind: 'csv', // Also serves as the filename extension in the case of a 'kind' of 'file'.
     details: {
-      directoryName: '.',
-      fileName: 'test-result-output'
+      fullyQualifiedFilePath: './test-result-output.csv',
+      // Optional: config for the csv file itself as defined here: http://papaparse.com/docs#json-to-csv
     }
   }
 };
-
-exports.outputTargets = outputTargets;

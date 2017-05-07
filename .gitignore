@@ -2,3 +2,4 @@ node_modules
 log/*
 build
 .yarn-lock
+test-result-output.csv

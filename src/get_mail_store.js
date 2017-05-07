@@ -1,6 +1,6 @@
 const mailx = require('mailx');
 
-exports.getMailStore = getMailStore;
+module.exports = getMailStore;
 
 function getMailStore(conf) {
   const {protocol, fqDomain, port, username, pwd} = conf;

@@ -57,4 +57,4 @@ const mailServers = {
   }
 };
 
-exports.mailServers = mailServers;
+module.exports = mailServers;

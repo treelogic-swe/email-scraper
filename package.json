@@ -26,7 +26,8 @@
   "dependencies": {
     "command-line-args": "*",
     "lodash": "*",
-    "mailx": "*"
+    "mailx": "*",
+    "babyparse": "*"
   },
   "devDependencies": {
     "chalk": "*",

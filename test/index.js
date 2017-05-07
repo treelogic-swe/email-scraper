@@ -1,7 +1,7 @@
 const {testConf} = require('../conf/test.conf');
-const {mailServers} = require('../conf/mail_servers.conf');
+const mailServers = require('../conf/mail_servers.conf');
 
-const {getMailStore} = require('../src/get_mail_store');
+const getMailStore = require('../src/get_mail_store');
 const scrapeMail = require('../src/scrape_mail');
 
 const chalk = require('chalk');
