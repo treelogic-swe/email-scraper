@@ -27,7 +27,8 @@
     "command-line-args": "*",
     "lodash": "*",
     "mailx": "*",
-    "babyparse": "*"
+    "babyparse": "*",
+    "mysql": "*"
   },
   "devDependencies": {
     "chalk": "*",

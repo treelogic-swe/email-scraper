@@ -1,9 +1,11 @@
-module.exports = {
-  kattare: { // This must map to a defined mailserver name in 'mail_servers.conf.js'.
+module.exports = { // The keys of this object must map to a defined mailserver name in 'mail_servers.conf.js'.
+  kattare: {
     kind: 'database',
     subkind: 'mysql',
-    details: { // Credentials are provided on the command line to the program so that they are never recorded here.
-      databaseName: 'fluffy',
+    details: { // The password is provided as a command line option via option 'databasePassword' to avoid recording here.
+      host: 'localhost',
+      user: 'fluffy',
+      database: 'fluffy',
       tableName: 'fc_t_monthly_statistics',
     },
   },
