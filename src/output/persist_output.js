@@ -11,7 +11,9 @@ module.exports = {
     fs.writeFileSync(conf.fullyQualifiedFilePath, csvUtil.unparse({fields, data}));
   },
 
-  writeToDatabase: (conf, output) => {}
+  writeToDatabase: (conf, output) => {
+    console.log(output);
+  }
 };
 
 function getRows(fields, result) {
