@@ -1,6 +1,9 @@
 const FAIL_MSG = 'Error: Fail get message:';
 
+const hasha = require('hasha');
 const {extract} = require('./extract/extract');
+const constants = require('./constants');
+
 const scrapeResultStatus = {
   mailStatus: null,
   scrapeResult: {}
@@ -70,17 +73,27 @@ function readAllMessages(inbox, extractTasks) {
 }
 
 function handleReceiveMessage(message, extractTasks) {
+  const sr = scrapeResultStatus.scrapeResult;
   Object
     .keys(extractTasks)
     .map((taskName) => {
-      const sr = scrapeResultStatus.scrapeResult;
       const extracted = extract(message, extractTasks[taskName]) || [];
       if (!sr[taskName]) {
         sr[taskName] = extracted;
       } else {
         sr[taskName] = sr[taskName].concat(extracted);
       }
+      if(extracted && extracted.length) { // Maintain a parallel array of the hash keys for the matching messages.
+        addHash(message, sr, `${taskName}-${constants.HASH}`);
+      }
     });
+}
+
+function addHash(message, sr, key) {
+  if (!sr[key]) {
+    sr[key] = [];
+  }
+  sr[key].push(hasha(JSON.stringify(message))); // We use the whole message object in case some text fields are blank, such as the body.
 }
 
 function handleCallback(cb, scrapeResultStatus, err) {

@@ -24,10 +24,11 @@
   "author": "Chris M. Balz",
   "license": "MIT",
   "dependencies": {
+    "babyparse": "*",
     "command-line-args": "*",
+    "hasha": "^3.0.0",
     "lodash": "*",
     "mailx": "*",
-    "babyparse": "*",
     "mysql": "*"
   },
   "devDependencies": {
@@ -35,7 +36,7 @@
     "eslint": "*",
     "pop3-n3": "*"
   },
-  "engines" : {
-    "node" : ">=6.3.0"
+  "engines": {
+    "node": ">=6.3.0"
   }
 }

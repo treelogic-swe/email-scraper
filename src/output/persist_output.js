@@ -1,5 +1,6 @@
 const fs = require('fs');
 const csvUtil = require('babyparse');
+const constants = require('../constants');
 
 module.exports = {
 
@@ -12,7 +13,8 @@ module.exports = {
   },
 
   writeToDatabase: (conf, output) => {
-    console.log(output);
+    console.log(output, conf);
+
   }
 };
 
