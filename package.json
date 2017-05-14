@@ -1,6 +1,6 @@
 {
   "name": "email-scraper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Scrapes e-mail from a configured email account. This can be used to programmatically obtain, for example, billing information.",
   "main": "index.js",
   "scripts": {
