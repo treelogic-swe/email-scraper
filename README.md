@@ -11,6 +11,7 @@ Can be used from the command line or programmatically, as described below in the
 # Prerequisites
 
   * NodeJS.  See `engines` field in the file `./package.json` for details on the version.
+  * Recommended: [yarn package manager](https://yarnpkg.com).
 
 ## Non-test Usage
 
@@ -23,9 +24,13 @@ To use this beyond the default test settings, you will need to:
 
 # Install
 
-`make install`
+```
+npm install email-scraper
+make instally
+```
 
 Tip: Use the provided alternative: `make instally` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
+If you do not have or want `yarn`, do: `make install` instead of `make instally`.
 
 # Configure
 
