@@ -3,7 +3,7 @@ const csvUtil = require('babyparse');
 const mysql = require('mysql');
 const pull = require('lodash/pull');
 
-const {HASH, HASH_COLUMN_NAME, LAST_EMAIL_READ_DB_TABLE_NAME, LAST_EMAIL_READ_DB_TABLE_COLUMN_NAME} = require('../constants');
+const {HASH, LAST_EMAIL_READ_DB_TABLE_NAME} = require('../constants');
 
 module.exports = {
 
