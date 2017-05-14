@@ -13,7 +13,8 @@ module.exports = {
   },
 
   writeToDatabase: (conf, output) => {
-    console.log(output, conf);
+    console.log(output);
+    console.log(conf);
 
   }
 };

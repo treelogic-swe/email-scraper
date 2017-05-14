@@ -20,7 +20,7 @@ function getOutputConf(clOpts) {
 
     return outputConf;
   }
-  setDbPwdIfNeeded(kind, clOpts, outputConfigs[key].detail);
+  setDbPwdIfNeeded(kind, clOpts, outputConfigs[key].details);
 
   return outputConfigs[key];
 }
@@ -32,11 +32,11 @@ function setDefault(outputConf) {
   outputConf.kind = CONSOLE;
 }
 
-function setDbPwdIfNeeded(kind, clOpts, detail) {
+function setDbPwdIfNeeded(kind, clOpts, details) {
   if (kind === DATABASE) {
-    if (!detail.password) {
+    if (!details.password) {
       if (clOpts.databasePassword) {
-        detail.password = clOpts.databasePassword;
+        details.password = clOpts.databasePassword;
       } else {
         console.error('No database password has been provided, but the output is specified to be to a d' +
             'atabase.Specify databasePassword as a commandline option.');
