@@ -38,8 +38,8 @@ function setDbPwdIfNeeded(kind, clOpts, details) {
       if (clOpts.databasePassword) {
         details.password = clOpts.databasePassword;
       } else {
-        console.error('No database password has been provided, but the output is specified to be to a d' +
-            'atabase.Specify databasePassword as a commandline option.');
+        console.error(`No database password has been provided, but the output is specified to be a
+            database.  Specify --databasePassword=foo as a commandline option.`);
       }
     }
   }

@@ -1,6 +1,8 @@
 const FAIL_MSG = 'Error: Fail get message:';
 
 const hasha = require('hasha');
+const every = require('lodash/every');
+
 const {extract} = require('./extract/extract');
 const constants = require('./constants');
 
@@ -26,11 +28,11 @@ function scrapeMail(mailStore, extractTasks, options = {}) {
 }
 
 function processMailbox(mailStore, extractTasks, options) {
-  const inbox = getInbox(mailStore, options);
+  const inbox = getInbox(mailStore, extractTasks, options);
   readAllMessages(inbox, extractTasks);
 }
 
-function getInbox(mailStore, options) {
+function getInbox(mailStore, extractTasks, options) {
   const startMessageNumber = options.startAt
     ? options.startAt + 1
     : 1;
@@ -42,6 +44,7 @@ function getInbox(mailStore, options) {
   inbox.done((status) => {
     console.info('End of inbox. Status: ', status);
     scrapeResultStatus.mailStatus = status;
+    removeEmptyRecords(extractTasks);
     handleCallback(options.callback, scrapeResultStatus);
     if (!options.listenForever) {
       mailStore.close();
@@ -69,22 +72,19 @@ function readAllMessages(inbox, extractTasks) {
       }
     });
   }
-
 }
 
 function handleReceiveMessage(message, extractTasks) {
   const sr = scrapeResultStatus.scrapeResult;
+  addHash(message, sr, constants.HASH);
   Object
     .keys(extractTasks)
     .map((taskName) => {
-      const extracted = extract(message, extractTasks[taskName]) || [];
+      const extracted = extract(message, extractTasks[taskName]) || [''];
       if (!sr[taskName]) {
         sr[taskName] = extracted;
       } else {
         sr[taskName] = sr[taskName].concat(extracted);
-      }
-      if(extracted && extracted.length) { // Maintain a parallel array of the hash keys for the matching messages.
-        addHash(message, sr, `${taskName}-${constants.HASH}`);
       }
     });
 }
@@ -94,6 +94,32 @@ function addHash(message, sr, key) {
     sr[key] = [];
   }
   sr[key].push(hasha(JSON.stringify(message))); // We use the whole message object in case some text fields are blank, such as the body.
+}
+
+function removeEmptyRecords(extractTasks) {
+  const sr = scrapeResultStatus.scrapeResult;
+  const listNames = Object.keys(sr);
+  const extractListNames = Object.keys(extractTasks);
+  if(!listNames.length) {
+    return;
+  }
+  sr[constants.HASH].map((messageHash, index) => {
+    if (noMatchesForMessage(sr, extractListNames, index)) {
+      removeEmptyResult(sr, listNames, index);
+    }
+  });
+}
+
+function noMatchesForMessage(sr, extractListNames, index) {
+  return every(extractListNames, (listName) => {
+    return sr[listName][index] === '';
+  });
+}
+
+function removeEmptyResult(sr, listNames, index) {
+  listNames.map( (listName) => {
+    sr[listName].splice(index, 1);
+  } );
 }
 
 function handleCallback(cb, scrapeResultStatus, err) {
