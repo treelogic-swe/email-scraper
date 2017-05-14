@@ -1,5 +1,9 @@
 ![email-scraper Logo](./resources/images/email-scraper.png)
 
+# Summary
+
+Turn a mailbox into a read API.
+
 # Overview
 
 Scrapes e-mail from a specified e-mail server, extracting string results according to specified matching patterns, and sends the output to a configured location.
