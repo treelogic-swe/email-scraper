@@ -1,4 +1,4 @@
-![email-scraper Logo](./resources/images/email-scraper.png) 
+![email-scraper Logo](./resources/images/email-scraper.png)
 
 # Overview
 
@@ -16,10 +16,10 @@ Can be used from the command line or programmatically, as described below in the
 
 To use this beyond the default test settings, you will need to:
 
-  * Configure `./conf/mail_servers.conf.js` following the pattern set by the entry `kattare` in that file.
+  * Configure `./conf/mail_servers.conf.js` by following the pattern set by any entry in that file.
     * Note that the username and password can be set in the clear.  Otherwise, the keyword `retrieve` will cause the mail
     program to run a separate, custom module to retrieve the credentials.
-  * Configure `./conf/output_targets.conf.js` following the pattern set by the entry `kattare` in that file.
+  * Configure `./conf/output_targets.conf.js` by following the pattern set by any entry in that file.
 
 # Install
 
