@@ -1,7 +1,7 @@
 {
-  "name": "kattare-email-scraper",
+  "name": "email-scraper",
   "version": "1.0.0",
-  "description": "Scrapes e-mail from the treelogic_admin@kattare.com e-mail account. This can be used to programmatically obtain, for example, billing information from Kattare. Since Kattare has no programmatic API for this, we do it this way.",
+  "description": "Scrapes e-mail from a configured email account. This can be used to programmatically obtain, for example, billing information.",
   "main": "index.js",
   "scripts": {
     "test": "make test",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://treelogic-swe.com/gitlab/tlswe/kattare-email-scraper.git"
+    "url": "https://github.com/treelogic-swe/email-scraper.git"
   },
   "keywords": [
     "email",
@@ -18,8 +18,7 @@
     "scraper",
     "e-mail",
     "scraper",
-    "billing",
-    "kattare"
+    "billing"
   ],
   "author": "Chris M. Balz",
   "license": "MIT",
