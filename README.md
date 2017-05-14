@@ -1,4 +1,4 @@
-![email-scraper Logo](./resources/images/email-scraper.png)
+![email-scraper Logo](./resources/images/email-scraper.png)  [![Build Status](https://travis-ci.org/treelogic-swe/email-scraper.png?branch=master)](https://travis-ci.org/treelogic-swe/email-scraper)
 
 # Overview
 
