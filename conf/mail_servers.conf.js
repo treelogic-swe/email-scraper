@@ -21,8 +21,9 @@ const mailServers = {
          *
          * Object keys (keys: 'subject', 'from', 'to', 'text', and so forth) are either 'and'd or 'or'd depending
          * on the 'conditional' object specified below (see the 'localTest' config).
-         * If it is left unspecified, then all keys are 'and'd.
-         * Also, if the 'conditional' object is specified, then only the relationships specified there are applied.
+         *
+         * If the 'conditional' object is left unspecified, then all keys are 'and'd.  If it is specified,
+         * then only the relationships specified there (in the 'conditional object') are applied.
          *
          * Array elements inside the properties are 'or'd.  To use 'and' in that case, put the cases into a single regex.
          *
@@ -50,7 +51,7 @@ const mailServers = {
         subject: [ /^Kattare:\s+Payment\s+Received\s*$/, /^[Ff]w[d]?:\s+Kattare:\s+Payment\s+Received\s*$/ ],
         from: [ /.*/ ], // Uses the 'address' field only, not name.
         to: [ /.*/ ],  // Uses the 'address' field only, not name.
-        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/m, network_usage_bill: NO_MATCH },  // This is the e-mail body text.
+        text: { fixed_amount_bill: /Amount:\s*\$\s*(\d+)/m, network_usage_bill: NO_MATCH },
         conditional: [ { terms: ['subject', 'text'], operator: 'or' } ],
       }
     }

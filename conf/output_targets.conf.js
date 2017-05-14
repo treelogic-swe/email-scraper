@@ -1,5 +1,5 @@
 module.exports = { // The keys of this object must map to a defined mailserver name in 'mail_servers.conf.js'.
-  localTest: {
+  localTest2: {
     kind: 'database',
     subkind: 'mysql',
     details: { // The password is provided as a command line option via option 'databasePassword' to avoid recording here.
@@ -9,7 +9,7 @@ module.exports = { // The keys of this object must map to a defined mailserver n
       tableName: 'billing',
     },
   },
-  localTest2: {
+  localTest: {
     kind: 'file',
     subkind: 'csv', // Also serves as the filename extension in the case of a 'kind' of 'file'.
     details: {
