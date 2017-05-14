@@ -16,8 +16,6 @@ module.exports = {
   },
 
   writeToDatabase: (conf, output) => {
-    console.log(output);
-    console.log(conf);
     const connection = getDBConnection(conf);
     const sr = output.scrapeResultStatus;
     connection.connect();
