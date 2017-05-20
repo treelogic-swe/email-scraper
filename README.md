@@ -87,7 +87,7 @@ Then run the tests as shown below, ensuring that you see "Test Passed" as the te
 
 ## Prerequisites
 
-The pre-requisites are the same as for [`node --inspect`](https://nodejs.org/api/debugger.html#debugger_v8_inspector_integration_for_node_js).
+The pre-requisites are the same as for [`node --inspect`](https://nodejs.org/api/debugger.html#debugger_v8_inspector_integration_for_node_js).  For more info see [Debugging Node.js with Chrome DevTools](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27).
 
 
 ## Run
