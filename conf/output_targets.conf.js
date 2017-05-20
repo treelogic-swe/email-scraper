@@ -5,7 +5,7 @@ module.exports = { // The keys of this object must map to a defined mailserver n
     details: { // The password is provided as a command line option via option 'databasePassword' to avoid recording here.
       host: 'localhost',
       user: 'foo', // For test, use --databasePassword=bar (if you have your tables owned by user foo, set password to `bar` (no quotes)).
-      database: 'email_scraper_1', // Use a single database per e-mail mailbox (inbox, etc).
+      database: 'email_scraper_1',
       tableName: 'billing',
       /*-
        * An additional table is required, last_email_read, to track the last email read so that future reads will not be redundant.
