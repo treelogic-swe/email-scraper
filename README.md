@@ -108,6 +108,12 @@ Example 2:
 npm run-script run-debug -- --mailserver=foo --username=bar --password=bat --keepListening=true
 ```
 
+## Output Options
+
+Current output options include output to console, write to file (currently includes format), or write to database.  Use the command line option `--output` to select the output type.  The default is output to the console.
+
+See the file `conf/output_targets.conf.js` for examples of the output options available.  That is where you will do any configuration you need for your output.  For info on the database structure required for database output, see the file `test/util/setup/db/mysql.sql`.
+
 # Test
 
 ## Prerequisites
