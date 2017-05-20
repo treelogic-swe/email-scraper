@@ -1,6 +1,6 @@
 const fs = require('fs');
 const csvUtil = require('babyparse');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const pull = require('lodash/pull');
 
 const {HASH, LAST_EMAIL_READ_DB_TABLE_NAME} = require('../constants');
@@ -26,17 +26,15 @@ module.exports = {
 };
 
 function writeContentResults(connection, tableName, sr) {
-  sr[HASH].map((hash, index) => {
-    const sql = `INSERT INTO ${tableName} VALUES ('${hash}', ${getInsertRemainder(sr, index)});`;
-    console.log(sql);
-    connection.query(sql, handleDBOperationDone);
+  sr[HASH].map((hash, index) => { // Always use preparedStatements to block any sql injection attack.
+    const preparedStatement = `INSERT INTO ${tableName} VALUES (?, ?);`;
+    connection.execute(preparedStatement,  [hash, getInsertRemainder(sr, index)], handleDBOperationDone);
   });
 }
 
 function writeLastReadMailNumber(connection, sr) {
-  const sql = `INSERT INTO ${LAST_EMAIL_READ_DB_TABLE_NAME} VALUES (${sr})`;
-  console.log(sql);
-  connection.query(sql, handleDBOperationDone);
+  const preparedStatement = `INSERT INTO ${LAST_EMAIL_READ_DB_TABLE_NAME} VALUES (?)`;
+  connection.query(preparedStatement, [sr], handleDBOperationDone);
 }
 
 function getInsertRemainder(sr, index) {
