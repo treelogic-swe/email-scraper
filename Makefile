@@ -1,4 +1,5 @@
 NBIN=./node_modules/.bin
+GIT_PROJECT=https://github.com/treelogic-swe/email-scraper
 
 help:
 	@node src/index.js --help
@@ -56,6 +57,10 @@ test:
 test-debug:
 	echo This is not popping up the graphical debugger window that it should.
 	@make -s test debug=true
+
+changelog:
+	@rm CHANGELOG.md
+	$(NBIN)/changelog $(GIT_PROJECT) -m > CHANGELOG.md
 
 uninstall:
 	rm -rf node_modules

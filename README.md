@@ -168,6 +168,7 @@ If you would like to alter the test data that is used by the bundled local test 
 
 Ensure that:
 
+  * Your commits are usually [prefixed with a classifier](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#type) (feat:, doc:, chore:, etc).
   * Your pull or merge request passes all tests (see Test section above) and passes lint (`make lint`).
   * Any new or changed behavior has an associated automated test case that runs under `make test`.
   * Document any new options or behaviors in a `README.md` (new or existing).

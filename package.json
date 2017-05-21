@@ -33,7 +33,8 @@
   "devDependencies": {
     "chalk": "*",
     "eslint": "*",
-    "pop3-n3": "*"
+    "pop3-n3": "*",
+    "changelog": "*"
   },
   "engines": {
     "node": ">=6.3.0"
