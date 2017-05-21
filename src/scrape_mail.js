@@ -76,7 +76,8 @@ function readAllMessages(inbox, extractTasks) {
 
 function handleReceiveMessage(message, extractTasks) {
   const sr = scrapeResultStatus.scrapeResult;
-  addHash(message, sr, constants.HASH);
+  addHash(message, sr);
+  addDate(message, sr);
   Object
     .keys(extractTasks)
     .map((taskName) => {
@@ -89,11 +90,24 @@ function handleReceiveMessage(message, extractTasks) {
     });
 }
 
-function addHash(message, sr, key) {
+function addHash(message, sr) {
+  // We use the whole message object in case some text fields are blank, such as the body.
+  addToScrapeResult(hasha(JSON.stringify(message)), sr, constants.HASH);
+}
+
+function addDate(message, sr) {
+  let emailDate = new Date(message.date);
+  if(isNaN(emailDate)) {
+    emailDate = '';
+  }
+  addToScrapeResult(emailDate, sr, constants.DATE);
+}
+
+function addToScrapeResult(data, sr, key) {
   if (!sr[key]) {
     sr[key] = [];
   }
-  sr[key].push(hasha(JSON.stringify(message))); // We use the whole message object in case some text fields are blank, such as the body.
+  sr[key].push(data);
 }
 
 function removeEmptyRecords(extractTasks) {

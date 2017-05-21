@@ -27,8 +27,8 @@ module.exports = {
 
 function writeContentResults(connection, tableName, sr) {
   sr[HASH].map((hash, index) => { // Always use preparedStatements to block any sql injection attack.
-    const preparedStatement = `INSERT INTO ${tableName} VALUES (?, ?);`;
-    connection.execute(preparedStatement,  [hash, getInsertRemainder(sr, index)], handleDBOperationDone);
+    const preparedStatement = `INSERT INTO ${tableName} VALUES (?, ?, ?);`;
+    connection.execute(preparedStatement,  [hash].concat(getInsertRemainder(sr, index)), handleDBOperationDone);
   });
 }
 
@@ -46,7 +46,7 @@ function getInsertRemainder(sr, index) {
     return acc;
   }, []);
 
-  return insertSqlFragment.join(', ');
+  return insertSqlFragment;
 }
 
 function handleDBOperationDone(error) {
