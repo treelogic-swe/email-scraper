@@ -1,6 +1,10 @@
 2017-05-19
 ==========
 
+  * chore: version bump.
+  * chore: yarn update.
+  * doc: Clean up install instructions.
+  * update changelog.
   * minor version (if outputting to database or csv, now there's a new column).
   * Support a changelog.
   * Add a third column for email date.  Make the hash the primary key.
