@@ -2,7 +2,7 @@
 
 # Summary
 
-Turn a mailbox into a read API.
+Turn a mailbox into a read API.  Availalble on npmjs.com: https://www.npmjs.com/package/email-scraper
 
 # Overview
 
@@ -28,9 +28,18 @@ To use this beyond the default test settings, you will need to:
 
 # Install
 
+If you have [`yarn`](https://yarnpkg.com):
+
+```
+yarn install email-scraper
+make instally
+```
+
+or if you want to use `npm` instead:
+
 ```
 npm install email-scraper
-make instally
+make install
 ```
 
 Tip: Use the provided alternative: `make instally` .  This will use the [yarn package manager](https://yarnpkg.com) instead of npm.  Yarn is typically much, much faster.
