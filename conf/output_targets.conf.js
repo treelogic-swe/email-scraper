@@ -1,5 +1,10 @@
+/**
+ * To use any of the below output configs with this package as-is out-of-the-box,
+ * just change the keyname to `localTest`.  For example, change `localTest3` to `localTest`.
+ * To use the database kind of output, see the instructions in the `./README.md`.
+ */
 module.exports = { // The keys of this object must map to a defined mailserver name in 'mail_servers.conf.js'.
-  localTest: {
+  localTest2: {
     kind: 'database',
     subkind: 'mysql',
     details: { // The password is provided as a command line option via option 'databasePassword' to avoid recording here.
@@ -13,12 +18,19 @@ module.exports = { // The keys of this object must map to a defined mailserver n
        */
     },
   },
-  localTest2: {
+  localTest3: {
     kind: 'file',
     subkind: 'csv', // Also serves as the filename extension in the case of a 'kind' of 'file'.
     details: {
       fullyQualifiedFilePath: './test-result-output.csv',
       // Optional: config for the csv file itself as defined here: http://papaparse.com/docs#json-to-csv
+    }
+  },
+  kattare: {
+    kind: 'file',
+    subkind: 'csv', // Also serves as the filename extension in the case of a 'kind' of 'file'.
+    details: {
+      fullyQualifiedFilePath: './test-result-output.csv',
     }
   }
 };
